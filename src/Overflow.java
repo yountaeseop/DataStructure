@@ -7,11 +7,13 @@ public class Overflow {
 //	크기를 1/2로 축소한다.
 
 	public static void main(String[] args) {
-
-		ArrList<String> s = new ArrList<String>();
 		
-		s.insertLast("apple");
+		
+		
+		ArrList<String> s = new ArrList<String>();
 		s.print();
+		s.insertLast("apple");
+		s.print() ;
 		s.insertLast("orange");
 		s.print();
 		s.insertLast("cherry");
@@ -58,7 +60,9 @@ class ArrList <E> {
 		if (size == a.length) {
 			resize(2 * a.length);
 		}
-		a[size++] = newItem;
+		a[size] = newItem; //a[size++] = newItem; 이렇게도 가능
+							 // size의 +연산이 나중에 된다.	
+		size++;
 	}
 
 	public void insert(E newItem, int k) { // k번째 자리에 새항목 삽입
