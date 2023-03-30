@@ -1,4 +1,4 @@
-package stack;
+package arrayStack;
 
 public class Main {
 
