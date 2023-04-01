@@ -30,6 +30,8 @@ public class ArrayQueue<E> {
 
 		if ((rear + 1) % q.length == front) { // 비어있는 원소가 1개뿐인 경우
 			// 꼬리번호 계산식 적용.
+			// 원형리스트에서 계속 삽입하다가 결국 1칸을 비워둬야하는
+			// front랑 만난다는 그림을 떠올려보자
 			resize(2 * q.length); // 큐의 크기를 2배 확장
 		}
 		rear = (rear + 1) % q.length;
@@ -60,11 +62,19 @@ public class ArrayQueue<E> {
 		Object[] t = new Object[newSize]; // newSize 크기의 새로운 배열 t 생성
 		for (int a = 1, j = front + 1; a < size + 1; a++, j++) {
 			// front한칸 비우는거니까 a가 1부터 시작하는 것이다.
+			// **헷갈리지말자! 배열에서 처음 front자리는 0번인덱스이다!!
+			// 따라서 0번 인덱스를 비워두기때문에 1부터 시작하는것!
 			t[a] = q[j % q.length]; // 배열 q의 항목들을 배열 t[1]로부터 복사
+			// 배열 q의 인덱스를 이렇게 주는 이유는 원형리스트이기때문에
+			// 원소가 순서대로 들어가있지 않을경우가 있다. 때문에 꼬리번호계산식으로
+			// 원소를 지정해서 배열 t에 차례대로 넣어주는 것이다.
 		}
 
 		front = 0;
-		rear = size;
+		// pop()으로 인해서 front의 자리가 바뀌었을 경우를 고려해서
+		// front를 0으로 초기화해주는 것이다.
+		
+		rear = size; // 원소가 1부터 들어가기때문에 size의 수와 동일하다.
 		q = (E[]) t; // 배열 t를 배열 q로
 	}
 
