@@ -1,5 +1,8 @@
 package binaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree <E> {
 	Node<E> root;
 	
@@ -55,9 +58,21 @@ public class BinaryTree <E> {
 		System.out.print(root.getKey()+ " ");
 		
 	}
-
-	public void levelorder(Node root) {
-		// TODO Auto-generated method stub
-		
+	
+	public void levelorder(Node root) { // 레벨 순회
+		Queue<Node> q = new LinkedList<Node>(); // 큐 자료구조 이용
+		Node t;
+		q.add(root);	// 루트 큐에 삽입
+		while(!q.isEmpty()) {
+			t = q.remove();	// 큐에서 가장 앞에 있는 노드 제거
+			System.out.print(t.getKey()+" "); // 제거된 노드 출력(방문)
+			if(t.getLeft() != null) {	//제거된 왼쪽 자식이 null이 아니면
+				q.add(t.getLeft());	// 큐에 왼쪽 자식 삽입
+			}
+			if(t.getRight() != null) {	// 제거된 오른쪽 자식이 null이 아니면
+				q.add(t.getRight()); 	// 큐에 오른쪽 자식 삽입
+			}
+		}
 	}
+	
 }

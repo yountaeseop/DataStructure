@@ -35,10 +35,11 @@ public class Main {
 
 		System.out.printf("\n후위 순회: ");
 		t.postorder(t.getRoot());
-
+		
 		System.out.printf("\n레벨 순회: ");
 		t.levelorder(t.getRoot());
 
+		
 		System.out.println();
 
 	}
