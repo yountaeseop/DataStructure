@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 
 public class ArrayStack<E> {
 	private E s[]; // 스택을 위한 배열
-	private int top; // 스택의 top 항목의 배열 원소 인덱스
+	private int top; // 스택의 top항목의 배열 원소 인덱스
 
 	public ArrayStack() { // 스택 생성자
 		s = (E[]) new Object[1]; // 초기에 크기가 1인 배열 생성

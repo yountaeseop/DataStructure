@@ -33,13 +33,13 @@ public class SList<E> {
 		size++;
 	}
 
-	public void deleteFront() {
+	public void deleteFront() {  // 리스트의 첫 노드 삭제
 		if(isEmpty()) {
 			throw new NoSuchElementException();
 		}
 		head = head.getNext();
-		//head의 값을 head의 다음 값으로 변경한뒤
-		//head의 next노드를 본래 head의 다음 다음 값으로 변경한다.
+		//head의 값을 head의 다음 값으로 변경
+		
 		size--;
 	}
 

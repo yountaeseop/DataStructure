@@ -3,7 +3,7 @@ package binaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinaryTree <E> {
+public class BinaryTree <E> implements Comparable<E>{
 	Node<E> root;
 	
 	public BinaryTree() {this.root = null;}
@@ -74,5 +74,26 @@ public class BinaryTree <E> {
 			}
 		}
 	}
+
+	public static boolean isEqual(Node n, Node m) {  // 두 트리의 동일성 검사
+		if(n == null || m == null) {  // 둘중에 하나라도 null이면
+			return n == m;	// 둘다 null이면 true, 아니면 false
+		}
+		
+//		if(n.getKey().compareTo(m.getKey()) != 0) {	 // 둘다 null이 아니면 item 비교
+//			return false;
+//		}
+		
+		return (isEqual(n.getLeft(), m.getLeft()) &&  // item이 같으면 왼쪽 자식 순환 호출 
+				isEqual(n.getRight(), m.getRight()));  //  오른쪽 자식 순환 호출
+	}
+
+	@Override
+	public int compareTo(E o) {
+		
+		return 0;
+	}
+	
+	
 	
 }

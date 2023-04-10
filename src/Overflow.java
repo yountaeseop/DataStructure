@@ -8,8 +8,6 @@ public class Overflow {
 
 	public static void main(String[] args) {
 		
-		
-		
 		ArrList<String> s = new ArrList<String>();
 		s.print();
 		s.insertLast("apple");
@@ -57,7 +55,7 @@ class ArrList <E> {
 	} // 리스트가 empty이면 true리턴
 
 	public void insertLast(E newItem) {
-		if (size == a.length) {
+		if (size == a.length) { // 배열에 빈 공간이 없으면
 			resize(2 * a.length);
 		}
 		a[size] = newItem; //a[size++] = newItem; 이렇게도 가능
@@ -69,7 +67,8 @@ class ArrList <E> {
 		if (size == a.length) {
 			resize(2 * a.length);
 		}
-		for (int i = size - 1; i >= k; i--) {
+		for (int i = size - 1; i >= k; i--) { 
+			// k번째 자리에 삽입할 것이기 때문에 k번째에 있는 요소까지 밀어야한다. 
 			a[i + 1] = a[i]; // 한 칸씩 뒤로 이동
 		}
 		a[k] = newItem;
@@ -104,9 +103,9 @@ class ArrList <E> {
 	private void resize(int newSize) {
 		Object[] t = new Object[newSize]; // 새로운 배열 선언
 		for(int i = 0; i < size; i++) {
-			t[i] = a[i];   // 배열 s를 배열 t로 복사
+			t[i] = a[i];   // 배열 a의 요소를 배열t에 하나씩 투입
 		}
-		a = (E[]) t;       // 배열 t를 배열 s로 
+		a = (E[]) t;       // 배열 t를 배열 a로 복사
 	}
 	
 	public void print() {

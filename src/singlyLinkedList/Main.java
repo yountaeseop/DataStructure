@@ -13,7 +13,8 @@ public class Main {
 		
 		System.out.println(": s의 길이 = "+s.size()+"\n");
 		System.out.println("체리가 \t"+s.search("cherry")+"번째에 있다.");
-		System.out.println("체리가 \t"+s.search("kiwi")+"번째에 있다.");
+		System.out.println("체리가 \t"+s.search("kiwi")+"번째에 있다.\n");
+		
 		s.deleteAfter(s.head);
 		s.print();
 		System.out.println(": s의 길이 = "+s.size());
