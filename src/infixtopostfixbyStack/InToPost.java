@@ -22,6 +22,7 @@ public class InToPost {
 
 	public static String InfixToPostfix(String Infix) {
 		// 핵심 아이디어 => 왼쪽 괄호나 연산자는 스택에 push하고, 피연산자는 출력한다.
+		// infix = "a+b*c-(d*e+f)*g"
 		
 		Stack<Character> stack = new Stack<>(); // 스택선언
 		String Postfix = "";

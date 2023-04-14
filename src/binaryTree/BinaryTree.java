@@ -27,7 +27,9 @@ public class BinaryTree <E> implements Comparable<E>{
 			return 0;	// null이면 0반환
 		} else {
 			return (1 + Math.max(height(root.getLeft()), height(root.getRight())));
-		}
+			// Math.max()는 두 인자중 큰 값을 리턴하는 함수이다.
+			// 따라서 왼쪽이나 오른쪽중 더 큰 값쪽으로 가기때문에 높이를 구해나갈 수 있다.
+ 		}
 	}
 
 	public void preorder(Node root) {
