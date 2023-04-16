@@ -8,34 +8,48 @@ public class UnionFind {
 	public UnionFind(Node[] a) {
 		this.a = a;
 	}
+// 내가 작성했던 코드	
+//	private int find(int index) {
+//		int parentInt;
+//		ArrayList<Integer> indexList = new ArrayList<Integer>();
+//		
+//		while(true) {
+//			parentInt=a[index].getParent();
+//			
+//			indexList.add(index);
+//			
+//			// 경로 압축 코드 - 경로상 노드의 인덱스를 저장
+//			if(index == parentInt) {
+//				for(int i = 0; i < indexList.size(); i++) {
+//					int indexOfList = indexList.get(i);
+//					a[indexOfList].setParent(parentInt);
+//				}
+//				// 인덱스와 getParent값이 같을 경우,
+//				//자기 자신이 부모일 경우가 그 집합의 root이다.
+//				break;
+//			}
+//			index = parentInt;
+//		}
+//		return parentInt;
+//	}
 	
-	private int find(int index) {
-		int parentInt;
-		ArrayList<Integer> indexList = new ArrayList<Integer>();
-		
-		while(true) {
-			parentInt=a[index].getParent();
-			
-			indexList.add(index);
-			
-			if(index == parentInt) {
-				for(int i = 0; i < indexList.size(); i++) {
-					int indexOfList = indexList.get(i);
-					a[indexOfList].setParent(parentInt);
-				}
-				// 인덱스와 getParent값이 같을 경우,
-				//자기 자신이 부모일 경우가 그 집합의 root이다.
-				break;
-			}
-			index = parentInt;
+	// find함수는 재귀로 작성하는 것이 간편!
+	// 인덱스를 주고 값을 뽑아네는 함수
+	protected int find(int i) {
+		if( i != a[i].getParent()) {
+			a[i].setParent(find(a[i].getParent()));
 		}
-		return parentInt;
+		return a[i].getParent();
 	}
 	
 	//Node안의 Rank를 기반으로 합친다.
 	public void union(int i, int j) {
 		int rankOfI = a[find(i)].getRank();
 		int rankOfj = a[find(j)].getRank();
+		
+		if(find(i) == find(j)) { // 루트 노드가 동일하면 더이상의 수행없이 그대로 리턴
+			return;
+		}
 		
 		if(rankOfI > rankOfj) { // i > j
 			a[find(j)].setParent(a[find(i)].getParent());
