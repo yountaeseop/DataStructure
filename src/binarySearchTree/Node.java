@@ -44,5 +44,4 @@ public class Node <Key extends Comparable<Key>, Value> {
 		this.right = right;
 	}
 	
-	
 }
