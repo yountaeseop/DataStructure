@@ -1,7 +1,5 @@
 package AVLTree;
 
-import binarySearchTree.Node;
-
 public class AVL<Key extends Comparable<Key>, Value> {
 	public Node root;
 	public class Node {
