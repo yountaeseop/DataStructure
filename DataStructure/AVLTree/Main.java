@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		AVL<Integer, String> st = new AVL<Integer, String>();
 		
-		st.put(75, "Apple");
+		st.put(75, "Apple"); // key, value
 		st.put(80, "Grape");
 		st.put(85, "Lime");
 		st.put(20, "Mango");
