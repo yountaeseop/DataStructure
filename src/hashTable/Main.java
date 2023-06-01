@@ -53,7 +53,8 @@ public class Main {
 		c.put(35, "lime");
 		c.put(50, "orange");
 		c.put(63, "watermelon");
-
+		
+		System.out.println();
 		System.out.println("탐색 결과");
 		System.out.println("50의 data = " + c.get(50));
 		System.out.println("63의 data = " + c.get(63));
