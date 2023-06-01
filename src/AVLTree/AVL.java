@@ -1,7 +1,5 @@
 package AVLTree;
 
-import binarySearchTree.Node;
-
 public class AVL<Key extends Comparable<Key>, Value> {
 	public Node root;
 	public class Node {
@@ -16,7 +14,6 @@ public class AVL<Key extends Comparable<Key>, Value> {
 			height = newHt;
 			left = right = null;
 		}
-
 	}
 	
 	private Node rotateRight(Node n) {

@@ -42,6 +42,7 @@ public class CList<E> {
 		}
 		Node x = last.getNext(); // last.getNext()가 0번째 노드를 뜻함
 		
+		// insert를 할때, last.getNext()와 last의 node가 같도록 설정돼있다.
 		if(x == last) {
 			last = null; //리스트에 1개의 노드만 있는 경우
 		} else {
@@ -62,6 +63,10 @@ public class CList<E> {
 		} else {
 			System.out.println("리스트 비어있음.");
 		}
+	}
+	
+	public void printx() {
+			System.out.println(last.getValue() + " " + last.getNext().getValue());
 	}
 
 }

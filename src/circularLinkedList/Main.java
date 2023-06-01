@@ -18,7 +18,12 @@ public class Main {
 		System.out.println(" : s의 길이 = " + s.size());
 		System.out.println();
 		
-
+		
+		s.delete();
+		s.delete();
+		s.printx(); // last의 요소까지 같이 출력해보기
+					// last와 last.getNext()가 동일하게 출력된다.
+		
 	}
 
 }
