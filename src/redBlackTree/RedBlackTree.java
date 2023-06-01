@@ -30,11 +30,10 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 		return (n.color == RED);
 	}
 	
-	public Value get(Key k) {	// 탐색 연산
-		return get(root, k);
+	public Value get(Key k) {	// 탐색 연산 - Key값 k를 찾는 과정
+		return get(root, k); // root노드부터 찾아 나선다.
 	}
-	
-	public Value get(Node n, Key k) {	
+	public Value get(Node n, Key k) { // 탐색 완료시 Node의 name을 반환
 		if(n == null) {
 			return null;	// 탐색 실패
 		}
