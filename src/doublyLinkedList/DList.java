@@ -12,6 +12,10 @@ public class DList <E> {
 		tail = new Node(null, head, null); //tail의 이전 노드를 head로 만든다.
 		head.setNext(tail); //head의 다음 노드를 tail로 만든다.
 		// head와 tail은 실재로 항목을 저장하지 않는 Dummy노드
+		// head와 tail을 더미노드로 만들어야 delete하는 경우에 
+		// DList가 아예 없어지는 경우를 방지할 수 있다.
+		// 그리고 head와 tail을 만들어서 양쪽에서 요소를 접근할 수 있도록한다.
+		
 		size = 0;
 	}
 	
@@ -26,6 +30,7 @@ public class DList <E> {
 	}
 	
 	public void insertAfter(Node p, E value) {
+		// p가 가리키는 노드 뒤에 삽입
 		Node t = p.getNext();
 		Node newNode = new Node(value, p, t);
 		p.setNext(newNode);

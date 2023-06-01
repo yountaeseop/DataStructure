@@ -82,7 +82,7 @@ class ArrList <E> {
 
 		E item = a[k];
 
-		for (int i = k; i < size; i++) {
+		for (int i = k; i < size-1; i++) {
 			a[i] = a[i + 1]; // 한 칸씩 앞으로 이동
 		}
 		size--;
