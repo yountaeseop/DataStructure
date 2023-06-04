@@ -1,6 +1,9 @@
 package hashTable;
 
 public class QuadProbing<K, V> {
+	// 이차조사, 선형조사와 근본적으로 동일하다.
+	// 선형조사보다 j가 증가할수록 더욱 멀리 떨어진 곳의 empty원소를 조사한다.
+	// 선형조사의 군집화 문제를 해결할 수 있다. 하지만 또 다른 형태의 군집화 발생
 	private int N = 0; // 항목 수 
 	public int M = 13; // 테이블 크기
 	public K[] a = (K[]) new Object[M]; // 해시테이블

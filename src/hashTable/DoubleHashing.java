@@ -14,7 +14,9 @@ public class DoubleHashing<K, V> {
 		int initialpos = hash(key);  // 초기 위치
 		int i = initialpos, loop_limit = 20;
 		int j = 1;
-		int d =(7-(int)key % 7);
+		int d =(7-(int)key % 7); // 두번째 해시 함수
+		// 해시함수를 2가지를 사용해서 시퀀스가 일정하지 않게 배치가능
+		// 모든 종류의 군집화 해결
 		
 		do { // 최소 한번은 코드 진행
 			if(a[i] == null) { // 삽입 위치 발견
@@ -27,6 +29,7 @@ public class DoubleHashing<K, V> {
 				return;
 			}
 			i = (initialpos + j*d) % M; // i = 다음 위치
+			// (hash(key)+j*d(key)) % 13 
 			j++;
 			loop_limit -= 1;
 		} while (loop_limit > 0); // 현재 i가 초기 위치와 같게 되면 루프 종료

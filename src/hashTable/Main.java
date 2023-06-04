@@ -30,17 +30,7 @@ public class Main {
 
 		System.out.println();
 
-		System.out.println("해시 테이블:");
-
-		for (int i = 0; i < lp.M; ++i)
-			System.out.printf("\t%2d", i);
-
-		System.out.println();
-
-		for (int i = 0; i < lp.M; ++i)
-			System.out.print("\t" + lp.a[i]);
-
-		System.out.println();
+		lp.print();
 
 		Chaining c = new Chaining();
 

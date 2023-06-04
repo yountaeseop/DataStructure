@@ -14,9 +14,13 @@ public class RandProbing<K, V> {
 	
 	public void put(K key, V data) { // 삽입 연산
 		int initialpos = hash(key);  // 초기 위치
-		int i = initialpos, loop_limit = 20; 
+		int i = initialpos, loop_limit = 20; // 저장 시도 횟수 제한
+		
+		// 선형조사와 이차조사의 규칙적인 점프 시퀀스와 달리 
+		// 점프 시퀀스를 Random으로 무작위화하여 empty원소를 찾음 
 		Random rand = new Random();
-		rand.setSeed(10);
+		rand.setSeed(10); // 랜덤 초기값을 10으로 설정
+		// *동일한 시드를 사용하면 동일한 순서의 난수를 얻을 수 있음
 		
 		do { 
 			if(a[i] == null) { 
@@ -29,6 +33,7 @@ public class RandProbing<K, V> {
 				return;
 			}
 			i = (initialpos + rand.nextInt(1000)) % M; // i = 다음 위치
+			// rand.nextInt(1000); -> 0부터 999까지의 값을 무작위로 반환
 			loop_limit -= 1;
 		} while (loop_limit > 0); // 현재 i가 초기 위치와 같게 되면 루프 종료
 	}
