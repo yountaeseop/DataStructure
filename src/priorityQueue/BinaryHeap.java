@@ -8,6 +8,7 @@ public class BinaryHeap<Key extends Comparable<Key>, Value> {
 		a = harray;
 		N = initialSize;
 	}
+	
 	public int size() {
 		return N;	// 힙의 크기 반환
 	}
@@ -38,30 +39,32 @@ public class BinaryHeap<Key extends Comparable<Key>, Value> {
 	}
 	
 	private void downheap(int i) {
-		while(2 * i <= N) {
+		while(2 * i <= N) { // 밑으로 내릴 때, i의 자식 우선순위가 N(힙의 크기)를 넘지 않는 동안
 			int k = 2*i; // i의 leftChild
-			if(k < N && greater(k, k+1)) k++;
+			if(k < N && greater(k, k+1)) k++; 
+			// i의 양쪽 자식의 우선순위를 크기를 비교해서 왼쪽 자식이 승이면(왼쪽자식이 우선순위가 더 낮은 것) 
+			// 따라서 우선순위가 더 높은 k+1이 승자임으로 k에 1을 더해준다.
 			// k < N 이 부분은 i의 rightChild가 없을 경우를 고려하기 위함
-			if(!greater(i, k)) break;
+			if(!greater(i, k)) break; // i가 더 크면 false로 패스해서 i와 k 자리바꿈
 			swap(i, k);
 			i = k;
 		}
 	}
 	
-	public void insert(Key newKey, Value newValue) {
+	public void insert(Key newKey, Value newValue) { // upheap적용
 		Entry temp = new Entry(newKey, newValue);
 		a[++N] = temp;
 		upheap(N);
 	}
 	
 	private void upheap(int j) {
-		while(j > 1 && greater(j/2, j)) {
+		while(j > 1 && greater(j/2, j)) { // j/2의 값이 j보다 크면(j/2가 우선순위가 낮으면)
 			swap(j/2, j);
 			j = j/2;
 		}
 	}
 	
-	public Entry deleteMin() {
+	public Entry deleteMin() { // downheap적용
 		Entry min = a[1]; // 첫번째 엔트리 추출
 		swap(1, N--); // 첫번재 자리와 최하위자리 엔트리 자리바꿈
 		a[N+1] = null; // 마지막 자리를 null해서 최소값 삭제
