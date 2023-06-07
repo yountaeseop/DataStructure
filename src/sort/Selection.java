@@ -29,7 +29,7 @@ public class Selection {
 		double selectTime = 0;
 		long start, end;
 		start = System.nanoTime();//currentTimeMillis();
-		Insertion.sort(data);
+		Selection.sort(data);
 		end = System.nanoTime();//.currentTimeMillis();
 		selectTime = (double) (end - start);
 		for(int a = 0; a < data.length; a++) {

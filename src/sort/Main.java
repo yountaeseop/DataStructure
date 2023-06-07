@@ -16,6 +16,9 @@ public class Main {
 		
 		Quick quickSort = new Quick();
 		quickSort.testQuickSort(generateRandomData(20));
+		
+		Heap heapSort = new Heap();
+		heapSort.testHeapSort(generateRandomData(20));
 	}
 	
 	// 난수 생성기
