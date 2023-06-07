@@ -39,7 +39,7 @@ public class Heap {
 	}
 	
 	public void testHeapSort(Integer [] data) {
-		System.out.println("선택 정렬:");
+		System.out.println("힙 정렬:");
 		double heapTime = 0;
 		long start, end;
 		start = System.nanoTime();//currentTimeMillis();

@@ -19,6 +19,9 @@ public class Main {
 		
 		Heap heapSort = new Heap();
 		heapSort.testHeapSort(generateRandomData(20));
+		
+		Shell shellSort = new Shell();
+		shellSort.testShellSort(generateRandomData(20));
 	}
 	
 	// 난수 생성기
