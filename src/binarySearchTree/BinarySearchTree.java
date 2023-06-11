@@ -53,6 +53,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 			return null;
 		}
 		return (Key) min(root).getKey();
+		// 원래 Node를 반환하는데 Key값으로 형변환 시켜준다.
 	}
 	private Node min(Node n) {
 		if(n.getLeft() == null) {
@@ -79,24 +80,16 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 		root = delete(root, k);
 	}
 	public Node delete(Node n, Key k) {
-		// 삭제할 노드 발견시 삭제할 노드의 자식노드가 몇개인지에 따라 3가지case로 분류
-		if(n == null) { // 자식노드가 없는경우
-			return null;
-		}
+		// 삭제할 노드 발견시 삭제할 노드의 자식노드가 몇개인지에 따라 4가지case로 분류
+		if(n == null) return null; // 자식노드가 없는경우
 		int t = n.getKey().compareTo(k);
-		if(t > 0) {
-			n.setLeft(delete(n.getLeft(), k));
-		}
-		else if(t < 0) {
-			n.setRight(delete(n.getRight(), k));
-		}
-		else { 
-			if(n.getRight() == null) { // 오른쪽 자식노드가 없는 경우
-				return n.getLeft();
-			}
-			if(n.getLeft() == null) { // 왼쪽 자식노드가 없는 경우
-				return n.getRight();
-			}
+		if(t > 0) n.setLeft(delete(n.getLeft(), k));
+		else if(t < 0) n.setRight(delete(n.getRight(), k));
+		else {	// 삭제할 노드 발견 
+			// 오른쪽 자식노드가 없는 경우
+			if(n.getRight() == null) return n.getLeft();
+			// 왼쪽 자식노드가 없는 경우
+			if(n.getLeft() == null) return n.getRight();
 			// 왼쪽, 오른쪽 자식 노드가 모두 존재할 경우
 			Node target = n;
 			n = min(target.getRight());

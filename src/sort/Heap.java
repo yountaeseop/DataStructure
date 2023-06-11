@@ -4,7 +4,7 @@ public class Heap {
 	// 여기서는 값이 클수록 우선순위가 높은 maxheap으로 구성됐다.
 	public static void sort(Comparable[] a) {
 		int heapSize = a.length-1; // a[0]은 사용 안 함
-		for(int i = heapSize/2; i > 0; i--) { // 힙 만들기
+		for(int i = heapSize/2; i > 0; i--) { // 힙 만들기 createHeap()과 동일
 			downheap(a, i, heapSize);
 		}
 		while(heapSize > 1) {	// 힙 정렬
@@ -12,17 +12,6 @@ public class Heap {
 			downheap(a, 1, heapSize);	//위배된 힙 속성 고치기
 		}
 	}
-	
-	private static boolean isless(Comparable i, Comparable j) { // 키 비교
-		return(i.compareTo(j) < 0);
-	}
-	
-	private static void swap(Comparable[] a, int i, int j) { // 원소 교환
-		Comparable temp = a[i];
-		a[i] = a[j];
-		a[j] = temp;
-	}
-	
 	private static void downheap(Comparable[] a, int p, int heapSize) {
 		while(2*p <= heapSize) { // 밑으로 내릴 때, i의 자식 우선순위가 N(힙의 크기)를 넘지 않는 동안
 			int s = 2*p; // s = 왼쪽 자식의 인덱스
@@ -37,6 +26,18 @@ public class Heap {
 			p = s;	// 이제 자식 승자의 자리에 부모가 있게 됨 
 		}
 	}
+	
+	private static boolean isless(Comparable i, Comparable j) { // 키 비교
+		return(i.compareTo(j) < 0);
+	}
+	
+	private static void swap(Comparable[] a, int i, int j) { // 원소 교환
+		Comparable temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+	
+	
 	
 	public void testHeapSort(Integer [] data) {
 		System.out.println("힙 정렬:");
