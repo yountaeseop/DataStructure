@@ -22,9 +22,10 @@ public class Quick {
 		Comparable p = a[pivot];
 		
 		while(true) {
-			while(isless(a[++i], p)) if(i == high) break; // 피벗보다 작으면
-			while(isless(p, a[--j])) if(j == pivot) break; // 피벗보다 크면
+			while(isless(a[++i], p)) if(i == high) break; // low 가 피벗보다 작을 동안
+			while(isless(p, a[--j])) if(j == pivot) break; // 피벗이 high보다 작을 동안
 			if(i >= j) break;	// i와 j가 교차되면 루프 나가기
+			// low < pivot < high가 아닌 경우 swap()
 			swap(a, i, j);
 		}
 		swap(a, pivot, j);	// 피벗과 a[j] 교환 

@@ -39,15 +39,13 @@ public class AVL<Key extends Comparable<Key>, Value> {
 
 	public void put(Key k, Value v) {root = put(root, k, v);} // 삽입 연산
 	private Node put(Node n, Key k, Value v) {
-		if (n == null) {
+		if (n == null) {	//초기 노드 없는 경우 새로운 노드를 만들고 높이 1로 지정 
 			return new Node(k, v, 1);
 		}
 		int t = k.compareTo(n.id);
-		if (t < 0) {
-			n.left = put(n.left, k, v);
-		} else if (t > 0) {
-			n.right = put(n.right, k, v);
-		} else {
+		if (t < 0) n.left = put(n.left, k, v);
+		else if (t > 0) n.right = put(n.right, k, v);
+		else {
 			n.name = v; // k가 이미 트리에 있으므로 Value v만 갱신
 			return n;
 		}

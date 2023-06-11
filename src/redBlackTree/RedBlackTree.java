@@ -4,7 +4,14 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	private static final boolean RED = true;
 	private static final boolean BLACK = false;
 	private Node root;
+	// 노드 n의 왼쪽 자식은 레드이고 그 연결 link도
+	// 레드이며 , n의 오른쪽 자식은 블랙이고 그 연결 link도 블랙
 	
+	// LLRB트리 만족 조건 4가지
+	// 루트와 null은 블랙이다.
+	// 루트로부터 각 null까지 2개의 연속된 레드 link는 없다.
+	// 루트로부터 각 null까지의 경로에 있는 블랙 link 수는 모두 같다.
+	// 레드 link는 왼쪽으로 기울어져 있다.
 	private class Node { // Node 클래스
 	    Key id;
 		Value name;
@@ -89,11 +96,25 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 		}
 		// 오른쪽 link가 레드인 경우 바로잡는다.
 		if(!isRed(n.left) && isRed(n.right)) n = rotateLeft(n);
+		// 왼쪽이 블랙, 오른쪽이 레드인 경우 rotateLeft
 		if(isRed(n.left) && isRed(n.left.left)) n = rotateRight(n);
+		// 왼쪽자식이 레드인데 그 자식 손주도 레드인 경우 rotateRight
 		if(isRed(n.left) && isRed(n.right)) flipColors(n);
+		// 왼쪽 오른쪽 둘다 레드인 경우 flipColors로 색깔 반전
 		return n;
 	}
 	
+	public void deleteMin() { // 최솟값 삭제
+		root = deleteMin(root);
+		root.color = BLACK;
+	}
+	private Node deleteMin(Node n) {
+		if(n.left == null) return null;
+		if(!isRed(n.left) && !isRed(n.left.left)) 
+			n = moveRedLeft(n);
+		n.left = deleteMin(n.left);
+		return fixUp(n);
+	}
 	private Node moveRedLeft(Node n) {
 		flipColors(n);	// case1 과 case2
 		if(isRed(n.right.left)) {	// case 2
@@ -103,23 +124,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 		}
 		return n;
 	}
-	
-	public void deleteMin() { // 최솟값 삭제
-		root = deleteMin(root);
-		root.color = BLACK;
-	}
-	
-	private Node deleteMin(Node n) {
-		if(n.left == null) {
-			return null;
-		}
-		if(!isRed(n.left) && !isRed(n.left.left)) {
-			n = moveRedLeft(n);
-		}
-		n.left = deleteMin(n.left);
-		return fixUp(n);
-	}
-	
 	private Node fixUp(Node n) {
 		if(isRed(n.right)) n = rotateLeft(n);
 		if(isRed(n.left) && isRed(n.left.left)) n = rotateLeft(n);
