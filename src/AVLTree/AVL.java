@@ -55,6 +55,8 @@ public class AVL<Key extends Comparable<Key>, Value> {
 	}
 
 	private Node balance(Node n) { //불균형 처리
+		// 노드의 왼쪽 서브트리의 높이와 오른쪽 서브트리의 높이 차이가 2이상이 나면 
+		// 균형의 수호자가 나타나서 귀신같이 균형을 조정한다.
 		if (bf(n) > 1) { // 노드 n의 왼쪽 서브트리가 높아서 불균형 발생
 			if (bf(n.left) < 0) { // 노드 n의 왼쪽자식노드의 오른쪽 서브트리가 높은 경우
 				n.left = rotateLeft(n.left); // LR - 회전

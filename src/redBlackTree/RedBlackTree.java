@@ -126,7 +126,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 	private Node fixUp(Node n) {
 		if(isRed(n.right)) n = rotateLeft(n);
-		if(isRed(n.left) && isRed(n.left.left)) n = rotateLeft(n);
+		if(isRed(n.left) && isRed(n.left.left)) n = rotateRight(n);
 		if(isRed(n.left) && isRed(n.right)) flipColors(n);
 		return n;
 	}
