@@ -6,7 +6,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	public BinarySearchTree(Key newId, Value newName) {
 		this.root = new Node(newId, newName);
 	}
-	
+
 	public Node getRoot() {
 		return root;
 	}
@@ -48,68 +48,74 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	}
 	// 재연결하는 부분이 잘 이해가 안된다.
 
-	public Key min() { 
+	public void delete(Key k) {
+		root = delete(root, k);
+	}
+
+	public Node delete(Node n, Key k) {
+		// 삭제할 노드 발견시 삭제할 노드의 자식노드가 몇개인지에 따라 4가지case로 분류
+		if (n == null)
+			return null; // 자식노드가 없는경우
+		int t = n.getKey().compareTo(k);
+		if (t > 0) n.setLeft(delete(n.getLeft(), k));
+		else if (t < 0) n.setRight(delete(n.getRight(), k));
+		else { // 삭제할 노드 발견
+			// 오른쪽 자식노드가 없는 경우
+			if (n.getRight() == null)
+				return n.getLeft();
+			// 왼쪽 자식노드가 없는 경우
+			if (n.getLeft() == null)
+				return n.getRight();
+			// 왼쪽, 오른쪽 자식 노드가 모두 존재할 경우
+			Node target = n;
+			n = min(target.getRight());
+			n.setRight(deleteMin(target.getRight()));
+			// 오른쪽 서브트리중 가장 작은 값의 노드를 찾아야한다.
+			// 왼쪽 서브트리에서 찾는건 최소값이고 타겟의 자리를 구조상 대신해줄수 없음.
+			n.setLeft(target.getLeft());
+		}
+		return n;
+	}
+
+	public Key min() {
 		if (root == null) {
 			return null;
 		}
 		return (Key) min(root).getKey();
 		// 원래 Node를 반환하는데 Key값으로 형변환 시켜준다.
 	}
+
 	private Node min(Node n) {
-		if(n.getLeft() == null) {
+		if (n.getLeft() == null) {
 			return n;
 		}
 		return min(n.getLeft());
 	}
-	
+
 	public void deleteMin() {
-		if(root == null) {
+		if (root == null) {
 			System.out.println("empty 트리");
 		}
 		root = deleteMin(root);
 	}
+
 	public Node deleteMin(Node n) {
-		if(n.getLeft() == null) {
+		if (n.getLeft() == null) {
 			return n.getRight();
 		}
 		n.setLeft(deleteMin(n.getLeft()));
 		return n;
 	}
-	
-	public void delete(Key k) {
-		root = delete(root, k);
-	}
-	public Node delete(Node n, Key k) {
-		// 삭제할 노드 발견시 삭제할 노드의 자식노드가 몇개인지에 따라 4가지case로 분류
-		if(n == null) return null; // 자식노드가 없는경우
-		int t = n.getKey().compareTo(k);
-		if(t > 0) n.setLeft(delete(n.getLeft(), k));
-		else if(t < 0) n.setRight(delete(n.getRight(), k));
-		else {	// 삭제할 노드 발견 
-			// 오른쪽 자식노드가 없는 경우
-			if(n.getRight() == null) return n.getLeft();
-			// 왼쪽 자식노드가 없는 경우
-			if(n.getLeft() == null) return n.getRight();
-			// 왼쪽, 오른쪽 자식 노드가 모두 존재할 경우
-			Node target = n;
-			n = min(target.getRight());
-			n.setRight(deleteMin(target.getRight()));
-			//오른쪽 서브트리중 가장 작은 값의 노드를 찾아야한다. 
-			//왼쪽 서브트리에서 찾는건 최소값이고 타겟의 자리를 구조상 대신해줄수 없음.
-			n.setLeft(target.getLeft());
-		}
-		return n;
-	}
-	
+
 	public void print(Node root) {
 		System.out.printf("\ninorder:\n");
 		inorder(root);
 	}
-	
+
 	public void inorder(Node n) {
-		if(n != null) {
+		if (n != null) {
 			inorder(n.getLeft());
-			System.out.print(n.getKey()+" ");
+			System.out.print(n.getKey() + " ");
 			inorder(n.getRight());
 		}
 	}
