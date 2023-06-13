@@ -43,4 +43,27 @@ public class QuadProbing<K, V> {
 		}
 		return null;
 	}
+	
+	public void print() {
+		System.out.println("해시 테이블:");
+
+		for (int i = 0; i < M; ++i) // 배열 인덱스
+			System.out.printf("\t%2d", i);
+
+		System.out.println();
+
+		for (int i = 0; i < M; ++i) // key값들
+			System.out.print("\t" + a[i]);
+
+		System.out.println();
+		
+		for (int i = 0; i < M; ++i) // key값에 hash함수적용한 값들
+			if(a[i] != null) {
+				//null값을 연산하려고 하면 안되기 때문에 조건으로 나눠준다
+				System.out.print("\t" + hash(a[i]));
+			} else {
+				System.out.print("\t" + "null ");
+			}
+		System.out.println();
+	}
 }
